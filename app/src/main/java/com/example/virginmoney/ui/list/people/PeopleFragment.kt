@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.example.virginmoney.R
-import com.example.virginmoney.data.model.People
 import com.example.virginmoney.databinding.FragmentPeopleBinding
 
 
@@ -20,7 +18,7 @@ class PeopleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val peopleViewmodel =
             ViewModelProvider(this).get(PeopleViewModel::class.java)
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.virginmoney.data.api.RetrofitInstance
-import com.example.virginmoney.data.model.PeopleItemModel
+import com.example.virginmoney.data.model.people.PeopleItemModel
 import kotlinx.coroutines.launch
 
 
@@ -22,7 +22,7 @@ class PeopleViewModel: ViewModel() {
         viewModelScope.launch {
             val result = RetrofitInstance.apiClient.getPeople()
 
-            if (!result.isNullOrEmpty()) {
+            if (result.isNotEmpty()) {
                 _peopleList.postValue(result)
             }
         }

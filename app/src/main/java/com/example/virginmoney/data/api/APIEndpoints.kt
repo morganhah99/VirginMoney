@@ -1,7 +1,7 @@
 package com.example.virginmoney.data.api
 
-import com.example.virginmoney.data.model.PeopleItemModel
-import com.example.virginmoney.data.model.RoomsItemModel
+import com.example.virginmoney.data.model.people.PeopleItemModel
+import com.example.virginmoney.data.model.rooms.RoomsItemModel
 import retrofit2.http.GET
 
 interface APIEndpoints {
