@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.virginmoney.R
+import com.example.virginmoney.databinding.FragmentPeopleBinding
 
 
 class PeopleFragment : Fragment() {
 
+    private var _binding: FragmentPeopleBinding? = null
+
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
