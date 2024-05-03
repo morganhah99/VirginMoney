@@ -22,6 +22,8 @@ class PeopleViewModel: ViewModel() {
         viewModelScope.launch {
             val result = RetrofitInstance.apiClient.getPeople()
 
+
+
             if (result.isNotEmpty()) {
                 _peopleList.postValue(result)
             }

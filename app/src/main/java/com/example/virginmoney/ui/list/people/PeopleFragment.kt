@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.virginmoney.databinding.FragmentPeopleBinding
 
 
@@ -24,9 +25,14 @@ class PeopleFragment : Fragment() {
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.test
-        peopleViewmodel.peopleList.observe(viewLifecycleOwner) {
-            textView.text = it.toString()
+        binding.apply {
+            peopleViewmodel.peopleList.observe(viewLifecycleOwner) {
+
+                rvPeople.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = PeopleAdapter(it)
+                }
+            }
         }
 
         return root
