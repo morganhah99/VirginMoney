@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.virginmoney.R
 import com.example.virginmoney.databinding.FragmentPeopleBinding
 
 
@@ -30,7 +33,19 @@ class PeopleFragment : Fragment() {
 
                 rvPeople.apply {
                     layoutManager = LinearLayoutManager(context)
-                    adapter = PeopleAdapter(it)
+                    adapter = PeopleAdapter(it) { peopleItemModel ->
+                        findNavController().navigate(
+
+                            R.id.action_peopleFragment_to_personDetailFragment,
+                            bundleOf(
+                                Pair("firstName", peopleItemModel.firstName),
+                                Pair("image", peopleItemModel.avatar),
+                                Pair("color", peopleItemModel.favouriteColor),
+                                Pair("job", peopleItemModel.jobtitle),
+
+                            )
+                        )
+                    }
                 }
             }
         }

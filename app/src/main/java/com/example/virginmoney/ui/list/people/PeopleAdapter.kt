@@ -12,10 +12,12 @@ import com.example.virginmoney.data.model.people.PeopleItemModel
 import com.example.virginmoney.databinding.ItemPersonBinding
 
 class PeopleAdapter(
-    val peopleList: List<PeopleItemModel>
+    val peopleList: List<PeopleItemModel>,
+    val function: (PeopleItemModel) -> Unit
 ) : RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>(){
 
     inner class PeopleViewHolder(itemView: View) : ViewHolder(itemView) {
+        val binding = ItemPersonBinding.bind(itemView)
         fun updateUI(peopleItemModel: PeopleItemModel) {
             binding.apply {
                 Glide.with(itemView.context)
@@ -27,7 +29,6 @@ class PeopleAdapter(
 
         }
 
-        val binding = ItemPersonBinding.bind(itemView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
@@ -40,5 +41,9 @@ class PeopleAdapter(
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
         holder.updateUI(peopleList[position])
+
+        holder.binding.root.setOnClickListener {
+            function.invoke(peopleList[position])
+        }
     }
 }
