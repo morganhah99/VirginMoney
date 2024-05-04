@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.virginmoney.R
 import com.example.virginmoney.databinding.FragmentPeopleBinding
 import com.example.virginmoney.databinding.FragmentRoomsBinding
+import com.example.virginmoney.ui.list.people.PeopleAdapter
+import org.w3c.dom.Text
 
 
 class RoomsFragment : Fragment() {
@@ -21,17 +24,43 @@ class RoomsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+//        val roomViewModel =
+//            ViewModelProvider(this).get(RoomsViewModel::class.java)
+//
+//        _binding = FragmentRoomsBinding.inflate(inflater,container, false)
+//        val root: View = binding.root
+//        binding.apply {
+//            roomViewModel.roomList.observe(viewLifecycleOwner) {
+//                rvRooms.apply {
+//                    layoutManager = LinearLayoutManager(context)
+//                    adapter = RoomsAdapter(it)
+//                }
+//            }
+//        }
+//        return root
+
         val roomViewModel =
             ViewModelProvider(this).get(RoomsViewModel::class.java)
-        _binding = FragmentRoomsBinding.inflate(inflater,container, false)
+        _binding = FragmentRoomsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.test
-
-        roomViewModel.roomList.observe(viewLifecycleOwner) {
-            textView.text = it.toString()
+        binding.rvRooms.layoutManager = LinearLayoutManager(context)
+        binding.rvRooms.adapter = RoomsAdapter(emptyList())
+        binding.apply {
+            roomViewModel.roomList.observe(viewLifecycleOwner) {
+                rvRooms.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = RoomsAdapter(it)
+                }
+            }
         }
+
+
         return root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
