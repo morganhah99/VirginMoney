@@ -6,4 +6,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_people_fragment">HELLO PEOPLE FRAGMENT</string>
     <string name="hello_rooms_fragment">HELLO ROOMS FRAGMENT</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="profile">Profile</string>
+    <string name="job_title">Job Title:</string>
+    <string name="favorite_color">Favorite Color:</string>
 </resources>

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -42,6 +41,7 @@ class PeopleFragment : Fragment() {
                                 Pair("image", peopleItemModel.avatar),
                                 Pair("color", peopleItemModel.favouriteColor),
                                 Pair("job", peopleItemModel.jobtitle),
+                                Pair("lastName", peopleItemModel.lastName)
 
                             )
                         )
