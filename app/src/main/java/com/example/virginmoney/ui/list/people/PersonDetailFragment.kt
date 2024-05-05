@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.virginmoney.R
 import com.example.virginmoney.databinding.FragmentPersonDetailBinding
 
 
@@ -38,6 +40,16 @@ class PersonDetailFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val toolBar = binding.toolbar
+        toolBar.setNavigationIcon(com.google.android.material.R.drawable.ic_arrow_back_black_24)
+        toolBar.setNavigationOnClickListener{
+            findNavController().navigateUp()
+        }
     }
 
 

@@ -18,7 +18,11 @@
         android:id="@+id/personDetailFragment"
         android:name="com.example.virginmoney.ui.list.people.PersonDetailFragment"
         android:label="PersonDetailFragment"
-        tools:layout="@layout/fragment_person_detail"/>
+        tools:layout="@layout/fragment_person_detail">
+        <action
+            android:id="@+id/action_personDetailFragment_to_peopleFragment"
+            app:destination="@id/peopleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/roomsFragment"
         android:name="com.example.virginmoney.ui.list.rooms.RoomsFragment"
