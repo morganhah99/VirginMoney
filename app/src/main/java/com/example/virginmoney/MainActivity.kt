@@ -1,15 +1,10 @@
 package com.example.virginmoney
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.example.virginmoney.databinding.ActivityMainBinding
-import com.example.virginmoney.ui.list.people.PeopleFragment
-import com.example.virginmoney.ui.list.rooms.RoomsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -29,6 +25,13 @@ class MainActivity : AppCompatActivity() {
 
             }
             true
+        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.personDetailFragment) {
+                binding.bottomNavigationView.visibility = View.GONE
+            } else {
+                binding.bottomNavigationView.visibility = View.VISIBLE
+            }
         }
 
     }
