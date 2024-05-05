@@ -1,5 +1,6 @@
 package com.example.virginmoney.ui.list.rooms
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +15,14 @@ class RoomsAdapter(
 ) : RecyclerView.Adapter<RoomsAdapter.RoomsViewHolder>() {
 
     inner class RoomsViewHolder(itemView: View) : ViewHolder(itemView) {
+        @SuppressLint("SetTextI18n")
         fun updateUI(roomsItemModel: RoomsItemModel) {
             binding.apply {
                 tvRoomNumber.text = "Room Number: ${roomsItemModel.id}"
                 if (roomsItemModel.isOccupied.toString() == "true") {
                     tvOccupancy.text = "Occupied"
                 } else {
-                    tvOccupancy.text = "Not Occupied"
+                    tvOccupancy.text = "Vacant"
                 }
             }
         }
