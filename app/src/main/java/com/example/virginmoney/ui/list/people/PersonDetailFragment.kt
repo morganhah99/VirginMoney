@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.virginmoney.R
 import com.example.virginmoney.databinding.FragmentPersonDetailBinding
 
 
@@ -30,6 +29,7 @@ class PersonDetailFragment : Fragment() {
         val color = arguments?.getString("color")?.replaceFirstChar { it.uppercase() }
         val job = arguments?.getString("job")
         val image = arguments?.getString("image")
+        val email = arguments?.getString("email")
 
         binding.apply {
             Glide.with(requireContext()).load(image).into(ivProfile)
@@ -37,11 +37,14 @@ class PersonDetailFragment : Fragment() {
             tvFavoriteColor.text = color
             tvJobTitle.text = job
             tvLastName.text = lastName
+            tvEmail.text = email
+
         }
 
         return binding.root
     }
 
+    @SuppressLint("PrivateResource")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

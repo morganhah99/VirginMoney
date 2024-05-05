@@ -41,7 +41,8 @@ class PeopleFragment : Fragment() {
                                 Pair("image", peopleItemModel.avatar),
                                 Pair("color", peopleItemModel.favouriteColor),
                                 Pair("job", peopleItemModel.jobtitle),
-                                Pair("lastName", peopleItemModel.lastName)
+                                Pair("lastName", peopleItemModel.lastName),
+                                Pair("email", peopleItemModel.email)
 
                             )
                         )
