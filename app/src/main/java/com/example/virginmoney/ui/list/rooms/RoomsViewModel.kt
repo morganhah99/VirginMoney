@@ -14,6 +14,9 @@ class RoomsViewModel: ViewModel() {
     private val _roomList = MutableLiveData<List<RoomsItemModel>>()
     val roomList: LiveData<List<RoomsItemModel>> = _roomList
 
+    private val _text = MutableLiveData<String>()
+    val text: LiveData<String> = _text
+
     init {
         getRooms()
     }
@@ -25,6 +28,7 @@ class RoomsViewModel: ViewModel() {
 
             if (result.isNotEmpty()) {
                 _roomList.postValue(result)
+                _text.postValue(result.toString())
             }
         }
     }

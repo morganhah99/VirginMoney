@@ -48,6 +48,7 @@ class RoomsFragment : Fragment() {
         binding.rvRooms.adapter = RoomsAdapter(emptyList())
         binding.apply {
             roomViewModel.roomList.observe(viewLifecycleOwner) {
+//                test.text = it.toString()
                 rvRooms.apply {
                     layoutManager = LinearLayoutManager(context)
                     adapter = RoomsAdapter(it)
