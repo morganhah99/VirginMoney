@@ -10,22 +10,21 @@ import com.example.virginmoney.data.model.rooms.RoomsItemModel
 import com.example.virginmoney.databinding.ItemRoomBinding
 
 class RoomsAdapter(
-    val roomList: List<RoomsItemModel>
+    var roomList: List<RoomsItemModel>
 ) : RecyclerView.Adapter<RoomsAdapter.RoomsViewHolder>() {
 
     inner class RoomsViewHolder(itemView: View) : ViewHolder(itemView) {
         fun updateUI(roomsItemModel: RoomsItemModel) {
-           binding.apply {
-               tvRoomNumber.text = roomsItemModel.id
-               tvOccupancy.text = roomsItemModel.isOccupied.toString()
-           }
-
-
-
+            binding.apply {
+                tvRoomNumber.text = "Room Number: ${roomsItemModel.id}"
+                if (roomsItemModel.isOccupied.toString() == "true") {
+                    tvOccupancy.text = "Occupied"
+                } else {
+                    tvOccupancy.text = "Not Occupied"
+                }
+            }
         }
         val binding = ItemRoomBinding.bind(itemView)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomsViewHolder {

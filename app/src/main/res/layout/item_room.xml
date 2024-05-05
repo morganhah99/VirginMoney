@@ -8,25 +8,25 @@
 
     <TextView
         android:id="@+id/tvRoomNumber"
-        android:layout_width="120dp"
-        android:layout_height="12dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="44dp"
-        app:layout_constraintEnd_toStartOf="@+id/tvOccupancy"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Room Number" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="8dp"
+        tools:text="Room Number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvOccupancy"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="8dp"
+        tools:text="Title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
-
+        app:layout_constraintStart_toEndOf="@id/tvRoomNumber"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
