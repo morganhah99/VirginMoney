@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.virginmoney.databinding.FragmentPersonDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PersonDetailFragment : Fragment() {
 
     lateinit var binding: FragmentPersonDetailBinding

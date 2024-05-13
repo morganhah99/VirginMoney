@@ -4,27 +4,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.virginmoney.data.api.RetrofitInstance
 import com.example.virginmoney.data.model.rooms.RoomsItemModel
-import com.example.virginmoney.databinding.FragmentRoomsBinding
+import com.example.virginmoney.data.repository.APIRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RoomsViewModel: ViewModel() {
+@HiltViewModel
+class RoomsViewModel @Inject constructor(
+    private val apiRepository: APIRepository
+): ViewModel() {
 
     private val _roomList = MutableLiveData<List<RoomsItemModel>>()
     val roomList: LiveData<List<RoomsItemModel>> = _roomList
 
     private val _text = MutableLiveData<String>()
-    val text: LiveData<String> = _text
 
     init {
         getRooms()
     }
 
-    fun getRooms() {
+    private fun getRooms() {
         viewModelScope.launch {
 
-            val result = RetrofitInstance.apiClient.getRooms()
+            val result = apiRepository.getRooms()
 
             if (result.isNotEmpty()) {
                 _roomList.postValue(result)

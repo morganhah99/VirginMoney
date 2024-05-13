@@ -11,8 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.virginmoney.R
 import com.example.virginmoney.databinding.FragmentPeopleBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PeopleFragment : Fragment() {
 
     private var _binding: FragmentPeopleBinding? = null
