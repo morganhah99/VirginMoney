@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.virginmoney.databinding.FragmentRoomsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,12 +17,13 @@ class RoomsFragment : Fragment() {
 
     private var _binding: FragmentRoomsBinding? = null
 
+    private val roomViewModel: RoomsViewModel by viewModels()
+
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val roomViewModel = ViewModelProvider(this).get(RoomsViewModel::class.java)
         _binding = FragmentRoomsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -29,9 +31,11 @@ class RoomsFragment : Fragment() {
         val roomsAdapter = RoomsAdapter(emptyList())
         binding.rvRooms.adapter = roomsAdapter
 
-        roomViewModel.roomList.observe(viewLifecycleOwner) { roomsItemModelList ->
-            roomsAdapter.roomList = roomsItemModelList
-            roomsAdapter.notifyDataSetChanged()
+        lifecycleScope.launchWhenCreated {
+            roomViewModel.roomList.collect { roomsItemModelList ->
+                roomsAdapter.roomList = roomsItemModelList
+                roomsAdapter.notifyDataSetChanged()
+            }
         }
 
         return root
