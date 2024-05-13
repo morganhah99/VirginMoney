@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.virginmoney.R
@@ -18,35 +19,37 @@ class PeopleFragment : Fragment() {
 
     private var _binding: FragmentPeopleBinding? = null
 
+    private val peopleViewmodel: PeopleViewModel by viewModels()
+
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val peopleViewmodel =
-            ViewModelProvider(this).get(PeopleViewModel::class.java)
+
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.apply {
-            peopleViewmodel.peopleList.observe(viewLifecycleOwner) {
+            lifecycleScope.launchWhenCreated {
+                peopleViewmodel.peopleList.collect {
+                    rvPeople.apply {
+                        layoutManager = LinearLayoutManager(context)
+                        adapter = PeopleAdapter(it) { peopleItemModel ->
+                            findNavController().navigate(
 
-                rvPeople.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = PeopleAdapter(it) { peopleItemModel ->
-                        findNavController().navigate(
+                                R.id.action_peopleFragment_to_personDetailFragment,
+                                bundleOf(
+                                    Pair("firstName", peopleItemModel.firstName),
+                                    Pair("image", peopleItemModel.avatar),
+                                    Pair("color", peopleItemModel.favouriteColor),
+                                    Pair("job", peopleItemModel.jobtitle),
+                                    Pair("lastName", peopleItemModel.lastName),
+                                    Pair("email", peopleItemModel.email)
 
-                            R.id.action_peopleFragment_to_personDetailFragment,
-                            bundleOf(
-                                Pair("firstName", peopleItemModel.firstName),
-                                Pair("image", peopleItemModel.avatar),
-                                Pair("color", peopleItemModel.favouriteColor),
-                                Pair("job", peopleItemModel.jobtitle),
-                                Pair("lastName", peopleItemModel.lastName),
-                                Pair("email", peopleItemModel.email)
-
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }
@@ -54,6 +57,7 @@ class PeopleFragment : Fragment() {
 
         return root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
