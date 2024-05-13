@@ -30,9 +30,7 @@ class APIModule {
     }
 
     @Provides
-    fun provideGsonConverterFactory(
-        gson: Gson
-    ) = GsonConverterFactory.create()
+    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Provides
     fun provideOkHttpClient(

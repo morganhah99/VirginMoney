@@ -1,9 +1,10 @@
-package com.example.virginmoney
+package com.example.virginmoney.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import com.example.virginmoney.R
 import com.example.virginmoney.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
